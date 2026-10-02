@@ -75,6 +75,23 @@ html {
     background-color: var(--gb-bg1) !important;
   }
 
+  /*
+   * Pop-ups only stay readable when they cover what is behind them, so the
+   * ones marked with standard roles or the popover attribute get a solid
+   * background instead of the transparent base.
+   */
+  [role="menu"],
+  [role="listbox"],
+  [role="tooltip"],
+  [role="alert"],
+  [role="alertdialog"],
+  [role="status"],
+  [aria-modal="true"],
+  [popover] {
+    background-color: var(--gb-bg1) !important;
+    border-color: var(--gb-bg3) !important;
+  }
+
   /* Headings */
   h1, h1 * { color: var(--gb-red) !important; }
   h2, h2 * { color: var(--gb-orange) !important; }
