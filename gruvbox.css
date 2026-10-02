@@ -43,16 +43,6 @@ html {
     border-color: var(--gb-bg2) !important;
   }
 
-  /*
-   * Those inline backgrounds are usually light, so use dark text on them
-   * unless the page sets its own text colour inline too. Background images
-   * are left alone; their text colour is the page's own.
-   */
-  :where([style*="background"]:not([style*="url("], [style^="color"],
-      [style*=";color"], [style*="; color"])) {
-    color: var(--gb-bg0) !important;
-  }
-
   body {
     background-color: var(--gb-bg0) !important;
   }
