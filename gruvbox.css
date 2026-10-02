@@ -32,13 +32,25 @@ html {
    * Base rules are wrapped in :where() so they have zero specificity;
    * the element-specific rules below can then override them.
    *
-   * Elements with an inline background colour (labels, calendar events,
-   * colour swatches, ...) and progress bars keep their own colours, as do
-   * their contents, because the colour usually carries meaning.
+   * Elements whose inline style mentions a background keep their own
+   * backgrounds, as do their contents, because the colour usually carries
+   * meaning. That includes background variables such as YouTube's
+   * --yt-saturated-base-background, which colour the box around the title.
    */
   :where(*:not(img, video, canvas, svg, svg *, progress, meter, [role="progressbar"],
       [style*="background"], [style*="background"] *)) {
     background-color: transparent !important;
+  }
+
+  /*
+   * Text and borders are only left alone for real inline background
+   * declarations (labels, calendar events, colour swatches, ...), not for
+   * variables whose name happens to contain "background". Otherwise a light
+   * site theme leaves its dark text on the dark gruvbox background.
+   */
+  :where(*:not(img, video, canvas, svg, svg *, progress, meter, [role="progressbar"],
+      [style^="background"], [style*=";background"], [style*="; background"],
+      [style^="background"] *, [style*=";background"] *, [style*="; background"] *)) {
     color: var(--gb-fg) !important;
     border-color: var(--gb-bg2) !important;
   }
