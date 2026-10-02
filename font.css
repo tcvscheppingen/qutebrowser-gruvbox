@@ -1,0 +1,9 @@
+/* JetBrains Mono Nerd Font on every page; icon fonts are excluded */
+:root {
+  --gb-font: "JetBrainsMono Nerd Font", "JetBrains Mono Nerd Font",
+    "JetBrainsMono NF", "JetBrains Mono", monospace;
+}
+
+:where(*:not([class*="icon"]):not([class*="fa-"]):not([class*="material"]):not([class*="glyph"]):not(i):not(svg):not(svg *)) {
+  font-family: var(--gb-font) !important;
+}

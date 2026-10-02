@@ -1,0 +1,14 @@
+# Site-specific stylesheets kept out of the repo
+sites/inplanning.css
+
+# Personal data
+quickmarks
+bookmarks/
+autoconfig.yml
+
+# State of the ,t and ,f stylesheet toggles
+disabled-*
+
+# Editor and OS files
+.*.swp
+.DS_Store

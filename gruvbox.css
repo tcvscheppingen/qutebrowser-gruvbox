@@ -1,0 +1,253 @@
+/* Gruvbox dark */
+:root {
+  --gb-bg0-hard: #1d2021;
+  --gb-bg0: #282828;
+  --gb-bg1: #3c3836;
+  --gb-bg2: #504945;
+  --gb-bg3: #665c54;
+  --gb-fg: #ebdbb2;
+  --gb-fg4: #a89984;
+  --gb-gray: #928374;
+  --gb-red: #fb4934;
+  --gb-green: #b8bb26;
+  --gb-yellow: #fabd2f;
+  --gb-blue: #83a598;
+  --gb-purple: #d3869b;
+  --gb-aqua: #8ec07c;
+  --gb-orange: #fe8019;
+}
+
+/*
+ * Opt-out: a site-specific stylesheet loaded after this one can set
+ * `--gruvbox-skip: 1` on :root to switch these rules off for that site and
+ * style it its own way. The check uses a style query on the parent element,
+ * which <html> doesn't have, so its background is set outside the block.
+ */
+html {
+  background-color: var(--gb-bg0) !important;
+}
+
+@container not style(--gruvbox-skip: 1) {
+  /*
+   * Base rules are wrapped in :where() so they have zero specificity;
+   * the element-specific rules below can then override them.
+   *
+   * Elements with an inline background colour (labels, calendar events,
+   * colour swatches, ...) and progress bars keep their own colours, as do
+   * their contents, because the colour usually carries meaning.
+   */
+  :where(*:not(img, video, canvas, svg, svg *, progress, meter, [role="progressbar"],
+      [style*="background"], [style*="background"] *)) {
+    background-color: transparent !important;
+    color: var(--gb-fg) !important;
+    border-color: var(--gb-bg2) !important;
+  }
+
+  /*
+   * Those inline backgrounds are usually light, so use dark text on them
+   * unless the page sets its own text colour inline too. Background images
+   * are left alone; their text colour is the page's own.
+   */
+  :where([style*="background"]:not([style*="url("], [style^="color"],
+      [style*=";color"], [style*="; color"])) {
+    color: var(--gb-bg0) !important;
+  }
+
+  body {
+    background-color: var(--gb-bg0) !important;
+  }
+
+  /* Page structure: slightly different shades to separate areas */
+  header,
+  nav,
+  footer,
+  [role="banner"],
+  [role="navigation"],
+  [role="contentinfo"] {
+    background-color: var(--gb-bg0-hard) !important;
+  }
+
+  aside,
+  dialog,
+  details,
+  [role="dialog"],
+  [role="complementary"] {
+    background-color: var(--gb-bg1) !important;
+  }
+
+  /* Headings */
+  h1, h1 * { color: var(--gb-red) !important; }
+  h2, h2 * { color: var(--gb-orange) !important; }
+  h3, h3 * { color: var(--gb-yellow) !important; }
+  h4, h4 * { color: var(--gb-green) !important; }
+  h5, h5 * { color: var(--gb-aqua) !important; }
+  h6, h6 * { color: var(--gb-blue) !important; }
+
+  /* Inline text */
+  strong,
+  b {
+    color: var(--gb-yellow) !important;
+  }
+
+  em,
+  i:not([class]) {
+    color: var(--gb-aqua) !important;
+  }
+
+  del,
+  s {
+    color: var(--gb-red) !important;
+  }
+
+  ins {
+    color: var(--gb-green) !important;
+  }
+
+  small,
+  figcaption,
+  caption,
+  time {
+    color: var(--gb-fg4) !important;
+  }
+
+  mark {
+    background-color: var(--gb-yellow) !important;
+    color: var(--gb-bg0) !important;
+  }
+
+  abbr[title] {
+    text-decoration-color: var(--gb-purple) !important;
+  }
+
+  /* Links */
+  a,
+  a * {
+    color: var(--gb-blue) !important;
+  }
+
+  a:visited,
+  a:visited * {
+    color: var(--gb-purple) !important;
+  }
+
+  a:hover,
+  a:hover * {
+    color: var(--gb-aqua) !important;
+  }
+
+  /* Lists */
+  li::marker {
+    color: var(--gb-orange) !important;
+  }
+
+  dt {
+    color: var(--gb-yellow) !important;
+  }
+
+  summary {
+    color: var(--gb-orange) !important;
+  }
+
+  /* Quotes */
+  blockquote {
+    background-color: var(--gb-bg1) !important;
+    border-left: 4px solid var(--gb-purple) !important;
+    color: var(--gb-fg4) !important;
+  }
+
+  hr {
+    border-color: var(--gb-bg3) !important;
+  }
+
+  /* Code */
+  pre {
+    background-color: var(--gb-bg0-hard) !important;
+    border: 1px solid var(--gb-bg2) !important;
+  }
+
+  pre,
+  pre * {
+    color: var(--gb-fg) !important;
+  }
+
+  code,
+  kbd,
+  samp {
+    background-color: var(--gb-bg1) !important;
+    color: var(--gb-orange) !important;
+  }
+
+  pre code {
+    background-color: transparent !important;
+  }
+
+  kbd {
+    border: 1px solid var(--gb-bg3) !important;
+    color: var(--gb-yellow) !important;
+  }
+
+  /* Tables */
+  th {
+    background-color: var(--gb-bg1) !important;
+    color: var(--gb-yellow) !important;
+  }
+
+  tr:nth-child(even) td {
+    background-color: var(--gb-bg0-hard) !important;
+  }
+
+  /* Forms */
+  input,
+  textarea,
+  select {
+    background-color: var(--gb-bg1) !important;
+    border-color: var(--gb-bg3) !important;
+  }
+
+  input:focus,
+  textarea:focus,
+  select:focus {
+    border-color: var(--gb-yellow) !important;
+    outline-color: var(--gb-yellow) !important;
+  }
+
+  button,
+  input[type="submit"],
+  input[type="button"],
+  [role="button"] {
+    background-color: var(--gb-bg2) !important;
+    color: var(--gb-yellow) !important;
+  }
+
+  button:hover,
+  input[type="submit"]:hover,
+  input[type="button"]:hover,
+  [role="button"]:hover {
+    background-color: var(--gb-bg3) !important;
+  }
+
+  label {
+    color: var(--gb-aqua) !important;
+  }
+
+  input[type="checkbox"],
+  input[type="radio"],
+  input[type="range"],
+  progress {
+    accent-color: var(--gb-green) !important;
+  }
+
+  /* Misc */
+  ::selection {
+    background-color: var(--gb-bg2) !important;
+    color: var(--gb-yellow) !important;
+  }
+
+  ::placeholder {
+    color: var(--gb-gray) !important;
+  }
+
+  * {
+    scrollbar-color: var(--gb-bg2) var(--gb-bg0);
+  }
+}
