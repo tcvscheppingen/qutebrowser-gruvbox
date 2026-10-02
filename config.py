@@ -33,21 +33,25 @@ config.bind(',t', 'spawn --userscript toggle-style gruvbox')
 config.bind(',f', 'spawn --userscript toggle-style font')
 c.content.dns_prefetch = True
 
-# Present qutebrowser as Firefox, because some sites block or degrade
-# browsers they don't recognise. Bump the version now and then, since an
-# outdated Firefox version can get flagged as well.
-import sys
-firefox_version = "157.0"
-if sys.platform == "darwin":
-    firefox_os = "Macintosh; Intel Mac OS X 10.15"
-else:
-    firefox_os = "X11; Linux x86_64"
+# Present qutebrowser as Google Chrome, because some sites block or degrade
+# browsers they don't recognise. qutebrowser runs on Chromium, so Chrome is
+# the identity that matches how it actually connects; the version follows
+# the Chromium version qutebrowser is built on.
+from qutebrowser.utils import version as qute_version
+chrome_major = qute_version.qtwebengine_versions(avoid_init=True).chromium_major
 c.content.headers.user_agent = (
-    f"Mozilla/5.0 ({firefox_os}; rv:{firefox_version}) "
-    f"Gecko/20100101 Firefox/{firefox_version}"
+    "Mozilla/5.0 ({os_info}) AppleWebKit/{webkit_version} (KHTML, like Gecko) "
+    f"Chrome/{chrome_major}.0.0.0 Safari/{{webkit_version}}"
 )
-# Chromium also identifies itself through navigator.userAgentData, which
-# Firefox doesn't have; greasemonkey/hide-useragentdata.js hides it.
+# Real Chrome lists "Google Chrome" in its client hints, where qutebrowser
+# only lists "Chromium". greasemonkey/chrome-useragentdata.js does the same
+# for navigator.userAgentData.
+c.content.headers.custom = {
+    "Sec-CH-UA": f'"Chromium";v="{chrome_major}", "Not=A?Brand";v="24", '
+                 f'"Google Chrome";v="{chrome_major}"',
+}
+# Chrome doesn't send "Do Not Track" by default, so it stands out
+c.content.headers.do_not_track = None
 config.bind(',r', 'config-source')
 
 # Play videos in mpv, which streams through yt-dlp: full quality and no ads,

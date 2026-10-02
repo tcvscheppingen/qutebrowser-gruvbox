@@ -70,28 +70,34 @@ html {
   }
 
   aside,
-  dialog,
   details,
-  [role="dialog"],
   [role="complementary"] {
     background-color: var(--gb-bg1) !important;
   }
 
   /*
-   * Pop-ups only stay readable when they cover what is behind them, so the
-   * ones marked with standard roles or the popover attribute get a solid
-   * background instead of the transparent base.
+   * Pop-ups only stay readable when they cover what is behind them. Dialogs,
+   * pop-ups marked with standard roles or the popover attribute, Bootstrap
+   * dropdowns and YouTube's menus get a frosted gruvbox background: the page
+   * behind them blurred, under a dark tint that keeps the text readable.
    */
+  dialog,
+  [role="dialog"],
+  [role="alertdialog"],
+  [aria-modal="true"],
   [role="menu"],
   [role="listbox"],
   [role="tooltip"],
   [role="alert"],
-  [role="alertdialog"],
   [role="status"],
-  [aria-modal="true"],
-  [popover] {
-    background-color: var(--gb-bg1) !important;
+  [popover],
+  .dropdown-menu,
+  ytd-multi-page-menu-renderer,
+  ytd-menu-popup-renderer {
+    background-color: color-mix(in srgb, var(--gb-bg0) 85%, transparent) !important;
+    backdrop-filter: blur(20px) saturate(1.4) !important;
     border-color: var(--gb-bg3) !important;
+    box-shadow: 0 8px 24px rgb(0 0 0 / 0.45) !important;
   }
 
   /* Headings */
