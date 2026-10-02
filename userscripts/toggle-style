@@ -1,6 +1,5 @@
 #!/bin/sh
-# Toggle one of the optional page stylesheets (gruvbox, font).
-# config.py skips <name>.css while the flag file disabled-<name> exists.
+# Toggle a stylesheet; config.py skips <name>.css while disabled-<name> exists
 flag="$QUTE_CONFIG_DIR/disabled-$1"
 if [ -e "$flag" ]; then
     rm "$flag"

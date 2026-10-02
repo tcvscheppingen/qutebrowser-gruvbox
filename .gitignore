@@ -1,5 +1,6 @@
-# Site-specific stylesheets kept out of the repo
+# Site-specific styling kept out of the repo
 sites/inplanning.css
+greasemonkey/inplanning.js
 
 # Personal data
 quickmarks

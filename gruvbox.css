@@ -17,40 +17,24 @@
   --gb-orange: #fe8019;
 }
 
-/*
- * Opt-out: a site-specific stylesheet loaded after this one can set
- * `--gruvbox-skip: 1` on :root to switch these rules off for that site and
- * style it its own way. The check uses a style query on the parent element,
- * which <html> doesn't have, so its background is set outside the block.
- */
-html {
+/* A site can opt out by adding the class gruvbox-skip to <html> */
+:root:not(.gruvbox-skip) {
   background-color: var(--gb-bg0) !important;
-}
 
-@container not style(--gruvbox-skip: 1) {
   /*
-   * Base rules are wrapped in :where() so they have zero specificity;
-   * the element-specific rules below can then override them.
-   *
-   * Elements whose inline style mentions a background keep their own
-   * backgrounds, as do their contents, because the colour usually carries
-   * meaning. That includes background variables such as YouTube's
-   * --yt-saturated-base-background, which colour the box around the title.
+   * Zero-specificity base rules. Inline backgrounds are kept, as they usually
+   * carry meaning; only the element itself is checked, since matching on
+   * ancestors (`[style] *`) makes every inline style change slow.
    */
   :where(*:not(img, video, canvas, svg, svg *, progress, meter, [role="progressbar"],
-      [style*="background"], [style*="background"] *)) {
+      [style*="background"])) {
     background-color: transparent !important;
   }
 
-  /*
-   * Text and borders are only left alone for real inline background
-   * declarations (labels, calendar events, colour swatches, ...), not for
-   * variables whose name happens to contain "background". Otherwise a light
-   * site theme leaves its dark text on the dark gruvbox background.
-   */
+  /* Text keeps its colour only on real inline backgrounds, not on variables
+     such as YouTube's --yt-saturated-base-background */
   :where(*:not(img, video, canvas, svg, svg *, progress, meter, [role="progressbar"],
-      [style^="background"], [style*=";background"], [style*="; background"],
-      [style^="background"] *, [style*=";background"] *, [style*="; background"] *)) {
+      [style^="background"], [style*=";background"], [style*="; background"])) {
     color: var(--gb-fg) !important;
     border-color: var(--gb-bg2) !important;
   }
@@ -59,7 +43,7 @@ html {
     background-color: var(--gb-bg0) !important;
   }
 
-  /* Page structure: slightly different shades to separate areas */
+  /* Page structure */
   header,
   nav,
   footer,
@@ -75,12 +59,7 @@ html {
     background-color: var(--gb-bg1) !important;
   }
 
-  /*
-   * Pop-ups only stay readable when they cover what is behind them. Dialogs,
-   * pop-ups marked with standard roles or the popover attribute, Bootstrap
-   * dropdowns and YouTube's menus get a frosted gruvbox background: the page
-   * behind them blurred, under a dark tint that keeps the text readable.
-   */
+  /* Frosted pop-ups */
   dialog,
   [role="dialog"],
   [role="alertdialog"],

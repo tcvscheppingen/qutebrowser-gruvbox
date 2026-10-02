@@ -10,8 +10,7 @@
   const uaData = navigator.userAgentData;
   if (!uaData) return;
 
-  // Use the Chrome version from the user agent set in config.py, so both
-  // report the same version
+  // Same version as the user agent set in config.py
   const major = (navigator.userAgent.match(/Chrome\/(\d+)/) || [])[1];
   if (!major) return;
   const addChrome = (brands) =>
