@@ -34,18 +34,18 @@ c.content.dns_prefetch = True
 
 # Present qutebrowser as Google Chrome of the same version as its Chromium,
 # as some sites block browsers they don't recognise
-from qutebrowser.utils import version as qute_version
-chrome_major = qute_version.qtwebengine_versions(avoid_init=True).chromium_major
-c.content.headers.user_agent = (
-    "Mozilla/5.0 ({os_info}) AppleWebKit/{webkit_version} (KHTML, like Gecko) "
-    f"Chrome/{chrome_major}.0.0.0 Safari/{{webkit_version}}"
-)
+#from qutebrowser.utils import version as qute_version
+#chrome_major = qute_version.qtwebengine_versions(avoid_init=True).chromium_major
+#c.content.headers.user_agent = (
+#    "Mozilla/5.0 ({os_info}) AppleWebKit/{webkit_version} (KHTML, like Gecko) "
+#    f"Chrome/{chrome_major}.0.0.0 Safari/{{webkit_version}}"
+#)
 # Real Chrome also lists "Google Chrome" here (and in navigator.userAgentData,
 # see greasemonkey/chrome-useragentdata.js)
-c.content.headers.custom = {
-    "Sec-CH-UA": f'"Chromium";v="{chrome_major}", "Not=A?Brand";v="24", '
-                 f'"Google Chrome";v="{chrome_major}"',
-}
+#c.content.headers.custom = {
+#    "Sec-CH-UA": f'"Chromium";v="{chrome_major}", "Not=A?Brand";v="24", '
+#                 f'"Google Chrome";v="{chrome_major}"',
+#}
 c.content.headers.do_not_track = None
 config.bind(',r', 'config-source')
 
