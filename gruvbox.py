@@ -129,5 +129,3 @@ c.colors.tabs.pinned.selected.odd.bg = dark_yellow
 c.colors.tabs.pinned.selected.even.fg = bg0
 c.colors.tabs.pinned.selected.even.bg = dark_yellow
 
-# Background shown while pages load
-c.colors.webpage.bg = bg0
